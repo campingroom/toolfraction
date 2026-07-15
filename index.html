@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เครื่องมือสร้างสื่อการเรียนรู้เศษส่วน — CPARE Model</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Mali:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons for modern look -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- Dashboard Main Layout -->
+  <div class="dashboard-container no-print">
+    
+    <!-- Sidebar Control Panel -->
+    <aside class="sidebar">
+      <header class="sidebar-header">
+        <div class="logo-icon"><i class="fa-solid fa-shapes"></i></div>
+        <div>
+          <h2>CPARE Fraction</h2>
+          <p>เครื่องมือสร้างสื่อเศษส่วน</p>
+        </div>
+      </header>
+
+      <div class="sidebar-content">
+        
+        <!-- Section: Presets (Quick Starts) -->
+        <section class="config-section">
+          <h3><i class="fa-solid fa-wand-magic-sparkles"></i> สื่อสำเร็จรูป (Presets)</h3>
+          <div class="preset-grid">
+            <button class="btn-preset" data-preset="wall-standard">
+              <i class="fa-solid fa-bars-staggered"></i> กำแพงเศษส่วน 1-12
+            </button>
+            <button class="btn-preset" data-preset="circles-compare">
+              <i class="fa-solid fa-chart-pie"></i> วงกลมเปรียบเทียบ
+            </button>
+            <button class="btn-preset" data-preset="grid-worksheet">
+              <i class="fa-solid fa-table-cells"></i> แบบฝึกหัดระบายสี
+            </button>
+            <button class="btn-preset" data-preset="cutout-cards">
+              <i class="fa-solid fa-scissors"></i> การ์ดวงกลมสำหรับตัด
+            </button>
+            <button class="btn-preset" data-preset="notebook-lined">
+              <i class="fa-solid fa-align-justify"></i> สมุดเส้นบรรทัด
+            </button>
+            <button class="btn-preset" data-preset="notebook-grid">
+              <i class="fa-solid fa-border-all"></i> สมุดลายตารางกริด
+            </button>
+            <button class="btn-preset" data-preset="cutting-strips">
+              <i class="fa-solid fa-grip-lines"></i> แถบตัดแบ่งส่วน A4
+            </button>
+          </div>
+        </section>
+
+        <!-- Section: Page Settings -->
+        <section class="config-section">
+          <h3><i class="fa-solid fa-file-lines"></i> ตั้งค่าหน้ากระดาษ</h3>
+          
+          <div class="form-group">
+            <label>การวางแนวหน้ากระดาษ (Orientation)</label>
+            <div class="toggle-group">
+              <input type="radio" id="orient-portrait" name="page-orientation" value="portrait" checked>
+              <label for="orient-portrait"><i class="fa-solid fa-file"></i> แนวตั้ง</label>
+              
+              <input type="radio" id="orient-landscape" name="page-orientation" value="landscape">
+              <label for="orient-landscape" class="landscape-label"><i class="fa-solid fa-file" style="transform: rotate(90deg)"></i> แนวนอน</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="page-title">หัวเรื่องบนกระดาษ</label>
+            <input type="text" id="page-title" value="สื่อการเรียนรู้เรื่องเศษส่วน" placeholder="ระบุหัวข้อ เช่น ใบงานการเปรียบเทียบเศษส่วน">
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="show-student-info" checked>
+            <label for="show-student-info">แสดงแถบข้อมูลนักเรียน (ชื่อ, ชั้น, เลขที่)</label>
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="show-worksheet-header" checked>
+            <label for="show-worksheet-header">แสดงหัวเรื่องใบงาน (ชื่อเรื่อง/คำชี้แจง)</label>
+          </div>
+
+          <div class="form-group">
+            <label for="page-margin">ระยะขอบกระดาษ (Margin)</label>
+            <select id="page-margin">
+              <option value="margin-none">ไม่มีขอบ (0 มม.)</option>
+              <option value="margin-small">แคบ (10 มม.)</option>
+              <option value="margin-medium" selected>ปกติ (15 มม.)</option>
+              <option value="margin-large">กว้าง (20 มม.)</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Section: Fraction Mode -->
+        <section class="config-section">
+          <h3><i class="fa-solid fa-cubes"></i> โหมดการสร้างสื่อ</h3>
+          <div class="mode-select">
+            <div class="mode-card active" data-mode="wall">
+              <i class="fa-solid fa-bars-staggered"></i>
+              <span>กำแพงเศษส่วน</span>
+            </div>
+            <div class="mode-card" data-mode="single">
+              <i class="fa-solid fa-circle"></i>
+              <span>เรขาคณิตเดี่ยว</span>
+            </div>
+            <div class="mode-card" data-mode="grid">
+              <i class="fa-solid fa-table-cells-large"></i>
+              <span>ตาราง/การ์ดตัด</span>
+            </div>
+            <div class="mode-card" data-mode="notebook">
+              <i class="fa-solid fa-file-pen"></i>
+              <span>กระดาษสมุดโน้ต</span>
+            </div>
+            <div class="mode-card" data-mode="cutting">
+              <i class="fa-solid fa-scissors"></i>
+              <span>กระดาษตัดแบ่งส่วน</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Detail Configuration (Dynamic per mode) -->
+        <section class="config-section" id="mode-settings-panel">
+          <h3><i class="fa-solid fa-sliders"></i> ตั้งค่ารายละเอียดเศษส่วน</h3>
+          
+          <!-- Mode 1: Wall Settings -->
+          <div id="settings-wall" class="mode-specific-settings">
+            <div class="flex-between">
+              <label>รายการแถวในกำแพง</label>
+              <button class="btn-icon" id="btn-add-wall-row" title="เพิ่มแถวใหม่"><i class="fa-solid fa-plus"></i> เพิ่มแถว</button>
+            </div>
+            <ul class="wall-rows-list" id="wall-rows-list">
+              <!-- Dynamically populated rows -->
+            </ul>
+            <div class="wall-actions">
+              <button class="btn-secondary btn-sm" id="btn-wall-reset"><i class="fa-solid fa-rotate-left"></i> รีเซ็ตแถว (1-12)</button>
+            </div>
+            
+            <div class="form-group margin-top-15" style="border-top: 1px dashed var(--line); padding-top: 15px;">
+              <div class="flex-between">
+                <label for="wall-height-slider">ความสูงของกำแพง (พิกเซล)</label>
+                <span class="value-display" id="wall-height-val">620</span>
+              </div>
+              <input type="range" id="wall-height-slider" min="150" max="800" value="620" step="10">
+            </div>
+          </div>
+
+          <!-- Mode 2: Single Shape Settings -->
+          <div id="settings-single" class="mode-specific-settings d-none">
+            <div class="form-group">
+              <label for="single-shape-type">เลือกรูปทรงเรขาคณิต</label>
+              <select id="single-shape-type">
+                <option value="circle">วงกลม (Circle)</option>
+                <option value="strip">แถบสี่เหลี่ยมยาว (Fraction Strip)</option>
+                <option value="square">สี่เหลี่ยมจัตุรัส (Square)</option>
+                <option value="grid">ตารางกริด (Grid)</option>
+              </select>
+            </div>
+            
+            <div class="form-group" id="single-div-group">
+              <div class="flex-between">
+                <label for="single-divisions">จำนวนส่วนแบ่งเท่าๆ กัน</label>
+                <span class="value-display" id="single-div-val">4</span>
+              </div>
+              <input type="range" id="single-divisions" min="1" max="100" value="4">
+            </div>
+
+            <!-- Grid Cols/Rows inputs, shown only when grid selected -->
+            <div id="grid-dimensions-group" class="form-row d-none">
+              <div class="form-group col">
+                <label for="grid-cols">คอลัมน์ (แนวตั้ง)</label>
+                <input type="number" id="grid-cols" min="1" max="20" value="4">
+              </div>
+              <div class="form-group col">
+                <label for="grid-rows">แถว (แนวนอน)</label>
+                <input type="number" id="grid-rows" min="1" max="20" value="3">
+              </div>
+            </div>
+          </div>
+
+          <!-- Mode 3: Grid / Multi-Cards Settings -->
+          <div id="settings-grid" class="mode-specific-settings d-none">
+            <div class="form-group">
+              <label for="card-shape-type">เลือกรูปทรงของการ์ด</label>
+              <select id="card-shape-type">
+                <option value="circle">วงกลม (Circle)</option>
+                <option value="square">สี่เหลี่ยมจัตุรัส (Square)</option>
+                <option value="strip">แถบสี่เหลี่ยมสั้น (Strip)</option>
+                <option value="full-strip">แถบแบ่งส่วนเต็มใบสำหรับตัด (Full Card Strip)</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="card-layout-cols">จำนวนการ์ดแนวนอน</label>
+                <input type="number" id="card-layout-cols" min="1" max="6" value="2">
+              </div>
+              <div class="form-group col">
+                <label for="card-layout-rows">จำนวนการ์ดแนวตั้ง</label>
+                <input type="number" id="card-layout-rows" min="1" max="8" value="3">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>จำนวนส่วนแบ่งในการ์ดแต่ละใบ</label>
+              <div class="toggle-group">
+                <input type="radio" id="card-divs-same" name="card-divs-type" value="same" checked>
+                <label for="card-divs-same">เท่ากันหมด</label>
+                <input type="radio" id="card-divs-seq" name="card-divs-type" value="sequence">
+                <label for="card-divs-seq">เรียงลำดับ</label>
+              </div>
+            </div>
+
+            <div class="form-group" id="card-divs-same-val-group">
+              <div class="flex-between">
+                <label for="card-divs-val">ส่วนแบ่งต่อใบ</label>
+                <span class="value-display" id="card-divs-val-display">6</span>
+              </div>
+              <input type="range" id="card-divs-val" min="1" max="64" value="6">
+            </div>
+
+            <div class="form-group d-none" id="card-divs-seq-start-group">
+              <div class="form-row">
+                <div class="form-group col">
+                  <label for="card-divs-seq-start">เริ่มต้นที่แบ่ง</label>
+                  <input type="number" id="card-divs-seq-start" min="1" max="50" value="1">
+                </div>
+                <div class="form-group col">
+                  <label for="card-divs-seq-step">เพิ่มขึ้นทีละ</label>
+                  <input type="number" id="card-divs-seq-step" min="1" max="10" value="1">
+                </div>
+              </div>
+              <p class="form-help-text">ตัวอย่าง: แบ่งออกเป็น 1, 2, 3, 4, 5, 6 ส่วน</p>
+            </div>
+          </div>
+
+          <!-- Mode 4: Notebook / Template Settings -->
+          <div id="settings-notebook" class="mode-specific-settings d-none">
+            <div class="form-group">
+              <label for="notebook-pattern">รูปแบบลายกระดาษ</label>
+              <select id="notebook-pattern">
+                <option value="blank">กระดาษเปล่า (Blank Sheet)</option>
+                <option value="lined" selected>เส้นบรรทัดสมุดเขียน (Lined Paper)</option>
+                <option value="grid">ตารางกริด/กราฟคณิตศาสตร์ (Grid/Graph)</option>
+                <option value="dot">ลายจุดดอท (Dot Grid for Bullet Journal)</option>
+                <option value="music">บรรทัดห้าเส้นดนตรี (Staff/Music Notation)</option>
+                <option value="iso">ตารางสามมิติ (Isometric Grid for 3D Drawing)</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="notebook-spacing-group">
+              <label for="notebook-spacing">ระยะห่างระหว่างเส้น/ช่อง</label>
+              <select id="notebook-spacing">
+                <option value="5">5 มิลลิเมตร (เล็ก/แคบ)</option>
+                <option value="7" selected>7 มิลลิเมตร (ขนาดมาตรฐานทั่วไป)</option>
+                <option value="10">10 มิลลิเมตร (กว้าง/คณิตศาสตร์ป.5)</option>
+                <option value="15">15 มิลลิเมตร (ขนาดใหญ่พิเศษ/เด็กประถมต้น)</option>
+                <option value="20">20 มิลลิเมตร (ใหญ่มาก/เด็กเล็ก)</option>
+              </select>
+            </div>
+
+            <div class="form-group checkbox-group" id="notebook-red-margin-group">
+              <input type="checkbox" id="notebook-red-margin" checked>
+              <label for="notebook-red-margin">แสดงเส้นกั้นหน้าสีแดงด้านซ้าย (Left Red Margin)</label>
+            </div>
+            
+            <p class="form-help-text" style="margin-top: 10px; color: var(--green); font-weight: 500;">
+              <i class="fa-solid fa-circle-info"></i> ความหนาและสีของลายเส้นกระดาษจะเปลี่ยนตามการตั้งค่า "สีเส้นขอบ" และ "ความหนาเส้น" ในหมวดหมู่ถัดไปด้านล่างค่ะ
+            </p>
+          </div>
+
+          <!-- Mode 5: Cutting Template Settings -->
+          <div id="settings-cutting" class="mode-specific-settings d-none">
+            <p class="form-help-text" style="margin-bottom: 12px; color: var(--green); font-weight: 500;">
+              <i class="fa-solid fa-circle-info"></i> แบ่งกระดาษ A4 เต็มแผ่น (ไม่มีขอบ) เป็นแถวเท่าๆ กัน แล้วกำหนดจำนวนคอลัมน์ในแต่ละแถว เส้นแนวนอน = เส้นทึบ (ตัด), เส้นแนวตั้ง = เส้นประ (แบ่ง)
+            </p>
+            <div class="flex-between">
+              <label>รายการแถวในกระดาษตัด</label>
+              <button class="btn-icon" id="btn-add-cutting-row" title="เพิ่มแถวใหม่"><i class="fa-solid fa-plus"></i> เพิ่มแถว</button>
+            </div>
+            <ul class="wall-rows-list" id="cutting-rows-list">
+              <!-- Dynamically populated rows -->
+            </ul>
+            <div class="wall-actions">
+              <button class="btn-secondary btn-sm" id="btn-cutting-reset"><i class="fa-solid fa-rotate-left"></i> รีเซ็ตแถว (1-12)</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Shading & Styling -->
+        <section class="config-section">
+          <h3><i class="fa-solid fa-palette"></i> สีสัน การระบายสี และลายเส้น</h3>
+          
+          <div class="form-group">
+            <label for="fill-mode">รูปแบบการระบายสี (Fill Mode)</label>
+            <select id="fill-mode">
+              <option value="outline">ว่างเปล่า (ขาวดำ - ให้เด็กระบายสีเอง)</option>
+              <option value="colored">ระบายสีให้เต็มชิ้น (Pre-colored)</option>
+              <option value="interactive" selected>ระบายสีบางส่วน (คลิกเลือกที่รูปด้านขวา)</option>
+            </select>
+            <p class="form-help-text" id="fill-mode-help">คุณสามารถคลิกที่ชิ้นส่วนเรขาคณิตด้านขวาเพื่อระบายสี/ยกเลิกการระบายสีได้อิสระ</p>
+          </div>
+
+          <div class="form-group" id="color-palette-group">
+            <label for="color-palette">โทนสีหลัก (Color Palette)</label>
+            <select id="color-palette">
+              <option value="pastel" selected>พาสเทลละมุน (Pastel Theme)</option>
+              <option value="rainbow">สีรุ้งสดใส (Rainbow Theme)</option>
+              <option value="cpare-green">สีเขียวธรรมชาติ (CPARE Green)</option>
+              <option value="cpare-brown">สีน้ำตาลอบอุ่น (CPARE Warm Brown)</option>
+              <option value="monochrome">ไล่โทนเทาดำ (Greyscale)</option>
+              <option value="custom">สีกำหนดเอง (Custom)</option>
+            </select>
+          </div>
+
+          <div class="form-row" id="custom-color-pickers" style="display: none;">
+            <div class="form-group col">
+              <label for="color-fill-primary">สีพื้นหลัง</label>
+              <input type="color" id="color-fill-primary" value="#e3f2fd">
+            </div>
+            <div class="form-group col">
+              <label for="color-fill-shaded">สีที่แรเงา</label>
+              <input type="color" id="color-fill-shaded" value="#1976d2">
+            </div>
+          </div>
+
+          <div class="form-group" id="shading-style-group">
+            <label for="shading-style">รูปแบบการแรเงา</label>
+            <select id="shading-style">
+              <option value="solid" selected>ระบายสีทึบ (Solid Fill)</option>
+              <option value="hatch-diagonal">แรเงาขีดเฉียง (Hatched Lines - ขาวดำ)</option>
+              <option value="hatch-cross">แรเงาตาราง (Cross Hatch)</option>
+              <option value="dots">แรเงาลายจุด (Dots Pattern)</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="line-style">รูปแบบเส้นขอบ</label>
+              <select id="line-style">
+                <option value="solid" selected>เส้นทึบปกติ</option>
+                <option value="dashed">เส้นประ (รอยตัด)</option>
+                <option value="dotted">เส้นจุดกลม</option>
+              </select>
+            </div>
+            <div class="form-group col">
+              <label for="line-thickness">ความหนาเส้น</label>
+              <select id="line-thickness">
+                <option value="thin">บาง (1px)</option>
+                <option value="medium" selected>ปกติ (1.5px)</option>
+                <option value="thick">หนา (2.5px)</option>
+                <option value="xthick">หนามาก (4px)</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="line-color">สีเส้นขอบ</label>
+              <input type="color" id="line-color" value="#2b2b26">
+            </div>
+            <div class="form-group col">
+              <!-- Spacing/Gap between shapes -->
+              <label for="shape-spacing">ระยะห่างชิ้นงาน</label>
+              <select id="shape-spacing">
+                <option value="none">ไม่มี (ชิดกัน)</option>
+                <option value="small">น้อย (5 มม.)</option>
+                <option value="medium" selected>ปกติ (10 มม.)</option>
+                <option value="large">มาก (20 มม.)</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Labels & Texts -->
+        <section class="config-section">
+          <h3><i class="fa-solid fa-font"></i> ป้ายกำกับตัวเลข/ข้อความ</h3>
+          <div class="form-group">
+            <label for="label-format">รูปแบบป้ายกำกับ</label>
+            <select id="label-format">
+              <option value="fraction" selected>แสดงเศษส่วน (เช่น 1/4)</option>
+              <option value="decimal">แสดงทศนิยม (เช่น 0.25)</option>
+              <option value="percent">แสดงเปอร์เซ็นต์ (เช่น 25%)</option>
+              <option value="index">ตัวเลขอินเดกซ์ชิ้นส่วน (เช่น 1, 2, 3)</option>
+              <option value="blank">ไม่แสดงข้อความ (ว่างเปล่า)</option>
+            </select>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group col checkbox-group">
+              <input type="checkbox" id="label-shaded-only">
+              <label for="label-shaded-only">แสดงเฉพาะช่องที่ระบายสี</label>
+            </div>
+            <div class="form-group col">
+              <label for="label-font-size">ขนาดข้อความ</label>
+              <select id="label-font-size">
+                <option value="small">เล็ก</option>
+                <option value="medium" selected>ปกติ</option>
+                <option value="large">ใหญ่</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="custom-instruction">คำชี้แจงเพิ่มเติม (แสดงใต้หัวเรื่อง)</label>
+            <textarea id="custom-instruction" rows="2" placeholder="ระบุคำสั่งวิชาคณิตศาสตร์ เช่น 'ให้นักเรียนระบายสีและระบุเศษส่วนให้ถูกต้อง'"></textarea>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Sidebar Footer (Primary Print Trigger) -->
+      <footer class="sidebar-footer">
+        <button class="btn-primary" id="btn-print-page">
+          <i class="fa-solid fa-print"></i> พิมพ์ / เซฟเป็น PDF (A4)
+        </button>
+        <div class="footer-note">
+          <p>แนะนำให้ใช้เบราว์เซอร์ Chrome บน Mac/PC เพื่อผลลัพธ์การพิมพ์ที่ดีที่สุด</p>
+        </div>
+      </footer>
+    </aside>
+
+    <!-- Canvas Preview Area -->
+    <main class="preview-area">
+      
+      <!-- Canvas Control Bar (Zoom & Helpers) -->
+      <div class="canvas-control-bar">
+        <div class="zoom-controls">
+          <button class="btn-zoom" id="btn-zoom-out" title="ย่อคีย์บอร์ด"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+          <span class="zoom-level" id="zoom-level-text">70%</span>
+          <button class="btn-zoom" id="btn-zoom-in" title="ขยาย"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="btn-secondary btn-sm" id="btn-zoom-fit" style="margin-left: 8px;"><i class="fa-solid fa-expand"></i> พอดีจอ</button>
+        </div>
+
+        <div class="canvas-actions">
+          <button class="btn-secondary btn-sm" id="btn-clear-shading"><i class="fa-solid fa-eraser"></i> ล้างการระบายสี</button>
+          <button class="btn-secondary btn-sm" id="btn-export-image"><i class="fa-solid fa-image"></i> เซฟเป็นรูปภาพ</button>
+        </div>
+      </div>
+
+      <!-- Centered Print Canvas Wrapper -->
+      <div class="canvas-viewport" id="canvas-viewport">
+        <!-- Inside here will be the A4 pages. Typically 1 page, but can scale to multiple -->
+        <div class="print-page portrait margin-medium" id="a4-print-page">
+          
+
+          <!-- Worksheet Header Area -->
+          <div class="worksheet-header">
+            <div class="student-info-row" id="student-info-row">
+              <span class="info-field font-mali">ชื่อ-นามสกุล: _____________________________________________</span>
+              <span class="info-field font-mali">ชั้น: _________</span>
+              <span class="info-field font-mali">เลขที่: ______</span>
+            </div>
+            <h1 class="worksheet-title font-mali" id="render-page-title">สื่อการเรียนรู้เรื่องเศษส่วน</h1>
+            <p class="worksheet-instruction font-sarabun" id="render-page-instruction">ให้นักเรียนเรียนรู้เศษส่วนจากการสังเกตและเปรียบเทียบขนาดของส่วนต่างๆ</p>
+          </div>
+
+          <!-- Shapes Display Area -->
+          <div class="worksheet-content" id="worksheet-content">
+            <!-- SVGs of fractions are drawn here dynamically -->
+          </div>
+
+          <!-- Bottom Footer Area -->
+          <div class="worksheet-footer">
+            <span class="footer-cpare font-mali">ชุดสื่อการสอน CPARE Model — สถาบันการเรียนรู้คณิตศาสตร์</span>
+            <span class="footer-page-num font-sarabun">หน้า 1 / 1</span>
+          </div>
+
+        </div>
+      </div>
+      
+    </main>
+  </div>
+
+  <!-- Javascript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
